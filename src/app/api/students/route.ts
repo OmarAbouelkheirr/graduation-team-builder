@@ -1,0 +1,106 @@
+import { NextRequest, NextResponse } from "next/server";
+import {
+  createStudent,
+  listStudents,
+  StudentStatus,
+} from "@/lib/students";
+
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+
+  const status = (searchParams.get("status") as StudentStatus | null) ?? "approved";
+  const track = searchParams.get("track") || undefined;
+  const q = searchParams.get("q") || undefined;
+
+  try {
+    const students = await listStudents({
+      status,
+      track,
+      q,
+    });
+
+    // لا نعيد الإيميل في الصفحة العامة كحماية بسيطة
+    const sanitized = students.map((s) => ({
+      id: s._id?.toString(),
+      fullName: s.fullName,
+      track: s.track,
+      skills: s.skills,
+      bio: s.bio,
+      preferences: s.preferences,
+      linkedIn: s.linkedIn,
+      github: s.github,
+      portfolio: s.portfolio,
+      telegram: s.telegram,
+      status: s.status,
+      createdAt: s.createdAt,
+    }));
+
+    return NextResponse.json(sanitized, { status: 200 });
+  } catch (error) {
+    console.error("Error listing students", error);
+    return NextResponse.json(
+      { error: "Failed to list students" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const body = await req.json();
+
+    const {
+      fullName,
+      email,
+      linkedIn,
+      github,
+      portfolio,
+      telegram,
+      track,
+      skills,
+      bio,
+      preferences,
+    } = body ?? {};
+
+    if (
+      !fullName ||
+      !email ||
+      !linkedIn ||
+      !github ||
+      !telegram ||
+      !track ||
+      !Array.isArray(skills) ||
+      !bio
+    ) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+
+    const student = await createStudent({
+      fullName,
+      email,
+      linkedIn,
+      github,
+      portfolio,
+      telegram,
+      track,
+      skills,
+      bio,
+      preferences,
+    });
+
+    return NextResponse.json(
+      { id: student._id?.toString() },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Error creating student", error);
+    return NextResponse.json(
+      { error: "Failed to create student" },
+      { status: 500 }
+    );
+  }
+}
+
