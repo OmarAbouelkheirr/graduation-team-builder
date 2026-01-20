@@ -32,6 +32,7 @@ export async function createStudent(input: {
   linkedIn: string;
   github: string;
   portfolio?: string;
+  telegram?: string;
   track: string;
   skills: string[];
   bio: string;
@@ -114,4 +115,3 @@ export async function deleteStudent(id: string): Promise<boolean> {
   const result = await db.collection<Student>("students").deleteOne({ _id });
   return result.deletedCount === 1;
 }
-
