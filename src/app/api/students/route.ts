@@ -26,7 +26,6 @@ export async function GET(req: NextRequest) {
       track: s.track,
       skills: s.skills,
       bio: s.bio,
-      preferences: s.preferences,
       linkedIn: s.linkedIn,
       github: s.github,
       portfolio: s.portfolio,
@@ -59,14 +58,12 @@ export async function POST(req: NextRequest) {
       track,
       skills,
       bio,
-      preferences,
     } = body ?? {};
 
     if (
       !fullName ||
       !email ||
       !linkedIn ||
-      !github ||
       !telegram ||
       !track ||
       !Array.isArray(skills) ||
@@ -88,7 +85,6 @@ export async function POST(req: NextRequest) {
       track,
       skills,
       bio,
-      preferences,
     });
 
     return NextResponse.json(

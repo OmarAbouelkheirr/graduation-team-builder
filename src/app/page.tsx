@@ -53,7 +53,6 @@ interface FormState {
   track: string;
   skills: string[];
   bio: string;
-  preferences: string;
 }
 
 export default function Home() {
@@ -68,7 +67,6 @@ export default function Home() {
     track: "",
     skills: [],
     bio: "",
-    preferences: "",
   });
   const [skillInput, setSkillInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -117,7 +115,6 @@ export default function Home() {
           track: form.track,
           skills: form.skills,
           bio: form.bio,
-          preferences: form.preferences || undefined,
         }),
       });
 
@@ -137,7 +134,6 @@ export default function Home() {
           track: "",
           skills: [],
           bio: "",
-          preferences: "",
         });
         setSkillInput("");
         // Redirect to students page after 1.5 seconds
@@ -154,7 +150,7 @@ export default function Home() {
 
   const progress = [
     form.fullName && form.email,
-    form.linkedIn && form.github,
+    form.linkedIn,
     form.telegram,
     form.track,
     form.skills.length > 0,
@@ -245,7 +241,7 @@ export default function Home() {
               </div>
               <div className="space-y-1.5">
                 <label className="text-sm font-medium text-zinc-700">
-                  GitHub Profile <span className="text-red-500">*</span>
+                  GitHub Profile (Optional)
                 </label>
                 <input
                   type="url"
@@ -255,7 +251,6 @@ export default function Home() {
                   onChange={(e) =>
                     setForm((f) => ({ ...f, github: e.target.value }))
                   }
-                  required
                 />
               </div>
             </div>
@@ -416,21 +411,6 @@ export default function Home() {
             <div className="text-xs text-zinc-500">
               {form.bio.length}/500
             </div>
-          </section>
-
-          {/* Preferences */}
-          <section className="space-y-4">
-            <h2 className="text-lg font-semibold text-zinc-900">
-              Team Preferences
-            </h2>
-            <textarea
-              placeholder="What part of the project interests you most? (Frontend, Backend, AI, Design...)"
-              className="min-h-[80px] w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
-              value={form.preferences}
-              onChange={(e) =>
-                setForm((f) => ({ ...f, preferences: e.target.value }))
-              }
-            />
           </section>
 
           {/* Submit Button */}

@@ -9,7 +9,6 @@ interface PublicStudent {
   track: string;
   skills: string[];
   bio: string;
-  preferences?: string;
   linkedIn?: string;
   github?: string;
   portfolio?: string;
@@ -235,7 +234,7 @@ export default function StudentsPage() {
                 <p className="mb-4 line-clamp-3 text-sm text-zinc-700">{s.bio}</p>
 
                 <div className="mb-4 flex flex-wrap gap-1.5">
-                  {s.skills.slice(0, 3).map((skill) => (
+                  {s.skills.map((skill) => (
                     <span
                       key={skill}
                       className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-700"
@@ -243,11 +242,6 @@ export default function StudentsPage() {
                       {skill}
                     </span>
                   ))}
-                  {s.skills.length > 3 && (
-                    <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-700">
-                      +{s.skills.length - 3}
-                    </span>
-                  )}
                 </div>
 
                 <div className="flex flex-wrap gap-2">

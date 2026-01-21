@@ -387,7 +387,6 @@ export default function AdminPage() {
       "Track",
       "Skills",
       "Bio",
-      "Preferences",
       "Status",
       "Created At",
     ];
@@ -402,7 +401,6 @@ export default function AdminPage() {
       s.track,
       s.skills.join("; "),
       s.bio.replace(/,/g, ";"),
-      s.preferences?.replace(/,/g, ";") || "",
       s.status,
       s.createdAt ? new Date(s.createdAt).toLocaleDateString() : "",
     ]);
@@ -1231,7 +1229,6 @@ function EditStudentForm({
     track: student.track,
     skills: student.skills.join(", "),
     bio: student.bio,
-    preferences: student.preferences || "",
   });
   const [saving, setSaving] = useState(false);
 
@@ -1248,7 +1245,6 @@ function EditStudentForm({
       track: form.track,
       skills: form.skills.split(",").map((s) => s.trim()).filter(Boolean),
       bio: form.bio,
-      preferences: form.preferences || undefined,
     });
     setSaving(false);
   }
@@ -1373,19 +1369,6 @@ function EditStudentForm({
           value={form.bio}
           onChange={(e) => setForm((f) => ({ ...f, bio: e.target.value }))}
           required
-        />
-      </div>
-
-      <div>
-        <label className="mb-2 block text-sm font-medium text-zinc-700">
-          Preferences
-        </label>
-        <textarea
-          className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 resize-y"
-          rows={2}
-          value={form.preferences}
-          onChange={(e) => setForm((f) => ({ ...f, preferences: e.target.value }))}
-          placeholder="Optional team preferences..."
         />
       </div>
 

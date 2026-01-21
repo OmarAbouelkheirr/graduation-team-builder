@@ -8,7 +8,7 @@ export interface Student {
   fullName: string;
   email: string;
   linkedIn: string;
-  github: string;
+  github?: string;
   portfolio?: string;
   telegram?: string;
   track: string;
@@ -30,7 +30,7 @@ export async function createStudent(input: {
   fullName: string;
   email: string;
   linkedIn: string;
-  github: string;
+  github?: string;
   portfolio?: string;
   telegram?: string;
   track: string;
