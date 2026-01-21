@@ -112,7 +112,7 @@ export default function StudentsPage() {
               <input
                 type="text"
                 placeholder="Search by name, skill, or keyword..."
-                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 pr-10 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 pr-10 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={(e) => {
@@ -125,7 +125,7 @@ export default function StudentsPage() {
           <div className="flex gap-2">
             <button
               onClick={() => void fetchStudents()}
-              className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-blue-700 hover:shadow-md"
+              className="rounded-xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:shadow-md hover:brightness-110"
             >
               Apply
             </button>
@@ -155,7 +155,7 @@ export default function StudentsPage() {
                   setStudents([]);
                   void fetchStudents();
                 }}
-                className="text-xs text-blue-600 hover:text-blue-700 font-medium"
+                className="text-xs text-fuchsia-600 hover:text-fuchsia-700 font-medium"
               >
                 Clear All
               </button>
@@ -168,7 +168,7 @@ export default function StudentsPage() {
                 onClick={() => setSelectedTrack("")}
                 className={`flex-shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-xs font-medium transition-all ${
                   !selectedTrack
-                    ? "bg-blue-600 text-white shadow-md"
+                    ? "bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 text-white shadow-md"
                     : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 active:bg-zinc-300"
                 }`}
               >
@@ -181,7 +181,7 @@ export default function StudentsPage() {
                   onClick={() => setSelectedTrack(t)}
                   className={`flex-shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-xs font-medium transition-all ${
                     selectedTrack === t
-                      ? "bg-blue-600 text-white shadow-md"
+                      ? "bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 text-white shadow-md"
                       : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 active:bg-zinc-300"
                   }`}
                 >
@@ -222,7 +222,7 @@ export default function StudentsPage() {
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <div className="mb-3 flex items-start gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-blue-600 text-base font-semibold text-white sm:h-12 sm:w-12 sm:text-lg">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-rose-500 text-base font-semibold text-white sm:h-12 sm:w-12 sm:text-lg">
                     {s.fullName.charAt(0)}
                   </div>
                   <div className="min-w-0 flex-1">
@@ -250,7 +250,7 @@ export default function StudentsPage() {
                       href={s.linkedIn}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-3 py-1.5 text-xs font-medium text-white transition-all hover:bg-blue-700"
+                      className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-3 py-1.5 text-xs font-medium text-white transition-all hover:brightness-110"
                     >
                       LinkedIn
                     </a>
@@ -305,7 +305,7 @@ export default function StudentsPage() {
               >
                 Previous
               </button>
-              <button className="rounded-lg bg-blue-600 px-3 py-1.5 text-sm font-medium text-white">
+              <button className="rounded-lg bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-3 py-1.5 text-sm font-medium text-white">
                 1
               </button>
               <button className="rounded-lg border border-zinc-300 px-3 py-1.5 text-sm text-zinc-700 hover:bg-zinc-50">

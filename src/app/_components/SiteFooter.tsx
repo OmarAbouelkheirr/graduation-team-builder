@@ -60,7 +60,7 @@ export function SiteFooter() {
             href="https://www.linkedin.com/in/omar-abouelkhier-eg/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-blue-600 transition-colors hover:text-blue-700 hover:underline"
+                    className="font-medium text-fuchsia-600 transition-colors hover:text-fuchsia-700 hover:underline"
           >
             Omar Abouelkhier
           </a>
@@ -69,7 +69,7 @@ export function SiteFooter() {
             href="https://www.linkedin.com/in/nour-eldeen-eg/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-blue-600 transition-colors hover:text-blue-700 hover:underline"
+                    className="font-medium text-fuchsia-600 transition-colors hover:text-fuchsia-700 hover:underline"
           >
             Nour Eldeen Mahmoud
           </a>

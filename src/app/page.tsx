@@ -161,7 +161,7 @@ export default function Home() {
     <div className="font-sans text-zinc-900 animate-in fade-in">
       <div className="rounded-xl bg-white/90 p-4 shadow-lg ring-1 ring-zinc-200/70 backdrop-blur transition-all duration-300 sm:rounded-2xl sm:p-6 lg:p-8">
         <header className="mb-6 space-y-2 sm:mb-8 sm:space-y-3">
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-blue-600">
+          <p className="text-xs font-medium uppercase tracking-[0.25em] text-fuchsia-600">
             Create Your Student Profile
           </p>
           <h1 className="text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
@@ -180,7 +180,7 @@ export default function Home() {
           </div>
           <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-200">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
+              className="h-full rounded-full bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-rose-500 transition-all duration-500"
               style={{ width: `${(progress / 6) * 100}%` }}
             />
           </div>
@@ -199,7 +199,7 @@ export default function Home() {
                 </label>
                 <input
                   type="text"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                   value={form.fullName}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, fullName: e.target.value }))
@@ -214,7 +214,7 @@ export default function Home() {
                 <input
                   type="email"
                   placeholder="your.email@example.com"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                   value={form.email}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, email: e.target.value }))
@@ -231,7 +231,7 @@ export default function Home() {
                 <input
                   type="url"
                   placeholder="https://linkedin.com/in/yourprofile"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                   value={form.linkedIn}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, linkedIn: e.target.value }))
@@ -246,7 +246,7 @@ export default function Home() {
                 <input
                   type="url"
                   placeholder="https://github.com/yourusername"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                   value={form.github}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, github: e.target.value }))
@@ -262,7 +262,7 @@ export default function Home() {
                 <input
                   type="url"
                   placeholder="https://yourportfolio.com"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                   value={form.portfolio}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, portfolio: e.target.value }))
@@ -276,7 +276,7 @@ export default function Home() {
                 <input
                   type="text"
                   placeholder="@username"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                   value={form.telegram}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, telegram: e.target.value }))
@@ -305,12 +305,12 @@ export default function Home() {
                   onClick={() => setForm((f) => ({ ...f, track: t.label }))}
                   className={`group relative rounded-xl border-2 p-3 text-left transition-all sm:p-4 ${
                     form.track === t.label
-                      ? "border-blue-500 bg-blue-50 shadow-md"
+                      ? "border-fuchsia-500 bg-fuchsia-50 shadow-md"
                       : "border-zinc-200 bg-white hover:border-zinc-300 hover:shadow-sm"
                   }`}
                 >
                   {form.track === t.label && (
-                    <div className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 text-white">
+                    <div className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-rose-500 text-white">
                       <svg
                         className="h-3 w-3"
                         fill="none"
@@ -341,13 +341,13 @@ export default function Home() {
                 {form.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-800"
+                    className="inline-flex items-center gap-1.5 rounded-full bg-fuchsia-100 px-3 py-1 text-sm text-fuchsia-800"
                   >
                     {skill}
                     <button
                       type="button"
                       onClick={() => removeSkill(skill)}
-                      className="hover:text-blue-900"
+                      className="hover:text-fuchsia-900"
                     >
                       ×
                     </button>
@@ -357,7 +357,7 @@ export default function Home() {
               <input
                 type="text"
                 placeholder="Type a skill and press Enter..."
-                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                 value={skillInput}
                 onChange={(e) => setSkillInput(e.target.value)}
                 onKeyDown={handleSkillKeyDown}
@@ -381,7 +381,7 @@ export default function Home() {
                               setForm((f) => ({ ...f, skills: [...f.skills, skill] }));
                             }
                           }}
-                          className="inline-flex items-center rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs font-medium text-zinc-700 transition-all duration-200 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-700 hover:scale-105 active:scale-95"
+                          className="inline-flex items-center rounded-full border border-zinc-300 bg-white px-3 py-1 text-xs font-medium text-zinc-700 transition-all duration-200 hover:border-fuchsia-500 hover:bg-fuchsia-50 hover:text-fuchsia-700 hover:scale-105 active:scale-95"
                           style={{ animationDelay: `${index * 30}ms` }}
                         >
                           + {skill}
@@ -400,7 +400,7 @@ export default function Home() {
             </h2>
             <textarea
               placeholder="Tell potential teammates about your project interests, past projects, or what role you'd like to take..."
-              className="min-h-[120px] w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+              className="min-h-[120px] w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
               value={form.bio}
               onChange={(e) =>
                 setForm((f) => ({ ...f, bio: e.target.value }))
@@ -421,7 +421,7 @@ export default function Home() {
             <button
               type="submit"
               disabled={submitting || !form.track}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:scale-105 active:translate-y-0 active:scale-100 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:scale-100"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:scale-105 active:translate-y-0 active:scale-100 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:scale-100"
             >
               {submitting ? (
                 <span className="flex items-center gap-2">

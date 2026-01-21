@@ -423,10 +423,10 @@ export default function AdminPage() {
 
   if (!isAuthorized) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-50 via-fuchsia-50 to-rose-50 p-4">
         <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-xl ring-1 ring-zinc-200">
           <div className="mb-6 text-center">
-            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600">
+            <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-indigo-600 via-fuchsia-600 to-rose-600">
               <svg
                 className="h-8 w-8 text-white"
                 fill="none"
@@ -453,7 +453,7 @@ export default function AdminPage() {
               </label>
               <input
                 type="password"
-                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                 value={keyInput}
                 onChange={(e) => setKeyInput(e.target.value)}
                 placeholder="Enter admin key"
@@ -473,7 +473,7 @@ export default function AdminPage() {
             <button
               onClick={() => void validateAdminKey(keyInput)}
               disabled={isValidating || !keyInput.trim()}
-              className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full rounded-xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-4 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isValidating ? (
                 <span className="flex items-center justify-center gap-2">
@@ -503,7 +503,7 @@ export default function AdminPage() {
         <div className="flex h-full flex-col p-6">
           <div className="mb-8 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 text-xl font-bold shadow-lg">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 via-fuchsia-600 to-rose-600 text-xl font-bold shadow-lg">
                 U
               </div>
               <div>
@@ -533,7 +533,7 @@ export default function AdminPage() {
               }}
               className={`w-full flex items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-medium transition-all ${
                 activeNav === "dashboard"
-                  ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg"
+                  ? "bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 text-white shadow-lg"
                   : "text-zinc-300 hover:bg-zinc-700/50 hover:text-white"
               }`}
             >
@@ -549,7 +549,7 @@ export default function AdminPage() {
               }}
               className={`w-full flex items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-medium transition-all ${
                 activeNav === "applications"
-                  ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg"
+                  ? "bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 text-white shadow-lg"
                   : "text-zinc-300 hover:bg-zinc-700/50 hover:text-white"
               }`}
             >
@@ -565,7 +565,7 @@ export default function AdminPage() {
               }}
               className={`w-full flex items-center gap-3 rounded-xl px-4 py-3 text-left text-sm font-medium transition-all ${
                 activeNav === "settings"
-                  ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg"
+                  ? "bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 text-white shadow-lg"
                   : "text-zinc-300 hover:bg-zinc-700/50 hover:text-white"
               }`}
             >
@@ -639,7 +639,7 @@ export default function AdminPage() {
 
               {/* Stats Grid */}
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <div className="rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 p-6 text-white shadow-lg">
+                <div className="rounded-2xl bg-gradient-to-br from-indigo-600 via-fuchsia-600 to-rose-600 p-6 text-white shadow-lg">
                   <div className="mb-2 flex items-center justify-between">
                     <span className="text-xs font-medium uppercase opacity-90">Total</span>
                     <div className="rounded-lg bg-white/20 p-2">
@@ -699,7 +699,7 @@ export default function AdminPage() {
                   <div className="space-y-3">
                     <button
                       onClick={() => setActiveNav("applications")}
-                      className="w-full rounded-xl bg-blue-600 px-4 py-3 text-sm font-medium text-white transition-all hover:bg-blue-700"
+                      className="w-full rounded-xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-4 py-3 text-sm font-medium text-white transition-all hover:brightness-110"
                     >
                       View All Applications
                     </button>
@@ -782,7 +782,7 @@ export default function AdminPage() {
 
             {/* Summary Cards - Unified with Dashboard style */}
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 p-6 text-white shadow-lg">
+              <div className="rounded-2xl bg-gradient-to-br from-indigo-600 via-fuchsia-600 to-rose-600 p-6 text-white shadow-lg">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-xs font-medium uppercase opacity-90">Total</span>
                   <div className="rounded-lg bg-white/20 p-2">
@@ -854,14 +854,14 @@ export default function AdminPage() {
                 <input
                   type="text"
                   placeholder="Search students..."
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 pr-10 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 pr-10 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
               <div className="flex flex-wrap gap-2">
                 <select
-                  className="rounded-xl border border-zinc-300 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  className="rounded-xl border border-zinc-300 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                   value={trackFilter}
                   onChange={(e) => setTrackFilter(e.target.value)}
                 >
@@ -873,7 +873,7 @@ export default function AdminPage() {
                   ))}
                 </select>
                 <select
-                  className="rounded-xl border border-zinc-300 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                  className="rounded-xl border border-zinc-300 bg-white px-3 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                   value={statusFilter}
                   onChange={(e) =>
                     setStatusFilter(e.target.value as StudentStatus | "")
@@ -956,7 +956,7 @@ export default function AdminPage() {
                             </td>
                             <td className="hidden px-4 py-3 sm:table-cell">
                               <div className="flex items-center gap-2">
-                                <div className="h-2 w-2 rounded-full bg-blue-500" />
+                                <div className="h-2 w-2 rounded-full bg-fuchsia-500" />
                                 <span className="text-sm text-zinc-700">{s.track}</span>
                               </div>
                             </td>
@@ -1013,7 +1013,7 @@ export default function AdminPage() {
                                 </button>
                                 <button
                                   onClick={() => setEditingStudent(s)}
-                                  className="rounded-lg bg-blue-600 px-2 py-1 text-[10px] text-white transition-all hover:bg-blue-700 sm:text-xs"
+                                  className="rounded-lg bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-2 py-1 text-[10px] text-white transition-all hover:brightness-110 sm:text-xs"
                                   title="Edit"
                                 >
                                   ✎
@@ -1045,7 +1045,7 @@ export default function AdminPage() {
                       >
                         Previous
                       </button>
-                      <button className="rounded-lg bg-blue-600 px-3 py-1.5 text-sm font-medium text-white">
+                      <button className="rounded-lg bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-3 py-1.5 text-sm font-medium text-white">
                         Next
                       </button>
                     </div>
@@ -1070,7 +1070,7 @@ export default function AdminPage() {
                   <button
                     onClick={saveSettings}
                     disabled={settingsLoading}
-                    className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:from-blue-700 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {settingsLoading ? (
                       <>
@@ -1110,7 +1110,7 @@ export default function AdminPage() {
                     }}
                     className="peer sr-only"
                   />
-                  <div className="h-6 w-11 rounded-full bg-zinc-300 transition-colors peer-checked:bg-blue-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300/50"></div>
+                  <div className="h-6 w-11 rounded-full bg-zinc-300 transition-colors peer-checked:bg-fuchsia-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-fuchsia-300/50"></div>
                   <div className="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition-transform peer-checked:translate-x-5"></div>
                 </label>
               </div>
@@ -1120,7 +1120,7 @@ export default function AdminPage() {
                     Maintenance Message
                   </label>
                   <textarea
-                    className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                     rows={3}
                     value={settingsForm.maintenanceMessage || ""}
                     onChange={(e) => {
@@ -1143,7 +1143,7 @@ export default function AdminPage() {
                   </label>
                   <input
                     type="text"
-                    className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                     value={settingsForm.siteName}
                     onChange={(e) => {
                       setSettingsForm((prev) => ({ ...prev, siteName: e.target.value }));
@@ -1156,7 +1156,7 @@ export default function AdminPage() {
                     Site Description
                   </label>
                   <textarea
-                    className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
                     rows={3}
                     value={settingsForm.siteDescription}
                     onChange={(e) => {
@@ -1258,7 +1258,7 @@ function EditStudentForm({
           </label>
           <input
             type="text"
-            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
             value={form.fullName}
             onChange={(e) => setForm((f) => ({ ...f, fullName: e.target.value }))}
             required
@@ -1270,7 +1270,7 @@ function EditStudentForm({
           </label>
           <input
             type="email"
-            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
             value={form.email}
             onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
             required
@@ -1285,7 +1285,7 @@ function EditStudentForm({
           </label>
           <input
             type="url"
-            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
             value={form.linkedIn}
             onChange={(e) => setForm((f) => ({ ...f, linkedIn: e.target.value }))}
             placeholder="https://linkedin.com/in/..."
@@ -1297,7 +1297,7 @@ function EditStudentForm({
           </label>
           <input
             type="url"
-            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
             value={form.github}
             onChange={(e) => setForm((f) => ({ ...f, github: e.target.value }))}
             placeholder="https://github.com/..."
@@ -1312,7 +1312,7 @@ function EditStudentForm({
           </label>
           <input
             type="url"
-            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
             value={form.portfolio}
             onChange={(e) => setForm((f) => ({ ...f, portfolio: e.target.value }))}
             placeholder="https://yourportfolio.com"
@@ -1324,7 +1324,7 @@ function EditStudentForm({
           </label>
           <input
             type="text"
-            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+            className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
             value={form.telegram}
             onChange={(e) => setForm((f) => ({ ...f, telegram: e.target.value }))}
             placeholder="@username"
@@ -1339,7 +1339,7 @@ function EditStudentForm({
         </label>
         <input
           type="text"
-          className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+          className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
           value={form.track}
           onChange={(e) => setForm((f) => ({ ...f, track: e.target.value }))}
           required
@@ -1352,7 +1352,7 @@ function EditStudentForm({
         </label>
         <input
           type="text"
-          className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+          className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
           value={form.skills}
           onChange={(e) => setForm((f) => ({ ...f, skills: e.target.value }))}
           placeholder="React, Python, Node.js"
@@ -1364,7 +1364,7 @@ function EditStudentForm({
           Bio
         </label>
         <textarea
-          className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 resize-y"
+          className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 resize-y"
           rows={4}
           value={form.bio}
           onChange={(e) => setForm((f) => ({ ...f, bio: e.target.value }))}
@@ -1383,7 +1383,7 @@ function EditStudentForm({
         <button
           type="submit"
           disabled={saving}
-          className="flex-1 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-4 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl disabled:opacity-50"
+          className="flex-1 rounded-xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-4 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110 disabled:opacity-50"
         >
           {saving ? "Saving..." : "Save Changes"}
         </button>
