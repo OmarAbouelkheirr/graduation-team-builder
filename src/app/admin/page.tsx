@@ -1426,7 +1426,7 @@ function EditStudentForm({
         <label className="mb-2 block text-sm font-medium text-zinc-700">
           Avatar
         </label>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <div className="grid grid-cols-4 gap-2">
           {[
             { id: "chase", seed: "Chase" },
             { id: "jocelyn", seed: "Jocelyn" },
@@ -1446,7 +1446,7 @@ function EditStudentForm({
                 key={avatar.id}
                 type="button"
                 onClick={() => setForm((f) => ({ ...f, avatar: avatar.seed }))}
-                className={`relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 transition-all hover:scale-110 sm:h-12 sm:w-12 ${
+                className={`relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 transition-all hover:scale-110 ${
                   form.avatar === avatar.seed
                     ? "border-lochinara-500 ring-2 ring-lochinara-200"
                     : "border-zinc-300 hover:border-lochinara-300"
@@ -1460,7 +1460,7 @@ function EditStudentForm({
                 {form.avatar === avatar.seed && (
                   <div className="absolute inset-0 flex items-center justify-center bg-lochinara-500/20">
                     <svg
-                      className="h-4 w-4 text-lochinara-600"
+                      className="h-3 w-3 text-lochinara-600"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

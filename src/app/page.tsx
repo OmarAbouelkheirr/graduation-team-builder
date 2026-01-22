@@ -337,13 +337,13 @@ export default function Home() {
                 Select a robot avatar that represents you.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="grid grid-cols-4 gap-2">
               {AVATARS.map((avatar) => (
                 <button
                   key={avatar.id}
                   type="button"
                   onClick={() => setForm((f) => ({ ...f, avatar: avatar.seed }))}
-                  className={`group relative rounded-lg border-2 p-1.5 transition-all ${
+                  className={`group relative rounded-lg border-2 p-1 transition-all ${
                     form.avatar === avatar.seed
                       ? "border-lochinara-500 bg-lochinara-50 shadow-md ring-2 ring-lochinara-200"
                       : "border-zinc-200 bg-white hover:border-lochinara-300 hover:shadow-sm"
@@ -357,8 +357,8 @@ export default function Home() {
                     />
                   </div>
                   {form.avatar === avatar.seed && (
-                    <div className="absolute -right-0.5 -top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-gradient-to-r from-lochinara-500 to-lochinara-600 text-white shadow-lg">
-                      <svg className="h-2.5 w-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="absolute -right-0.5 -top-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-gradient-to-r from-lochinara-500 to-lochinara-600 text-white shadow-lg">
+                      <svg className="h-2 w-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
