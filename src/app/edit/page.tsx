@@ -465,13 +465,13 @@ export default function EditPage() {
               <label className="text-sm font-medium text-zinc-700">
                 Avatar <span className="text-red-500">*</span>
               </label>
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <div className="grid grid-cols-4 gap-2">
                 {AVATARS.map((avatar) => (
                   <button
                     key={avatar.id}
                     type="button"
                     onClick={() => setForm((f) => ({ ...f, avatar: avatar.seed }))}
-                    className={`relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 transition-all hover:scale-110 sm:h-14 sm:w-14 ${
+                    className={`relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 transition-all hover:scale-110 ${
                       form.avatar === avatar.seed
                         ? "border-lochinara-500 ring-2 ring-lochinara-200"
                         : "border-zinc-300 hover:border-lochinara-300"
@@ -485,7 +485,7 @@ export default function EditPage() {
                     {form.avatar === avatar.seed && (
                       <div className="absolute inset-0 flex items-center justify-center bg-lochinara-500/20">
                         <svg
-                          className="h-5 w-5 text-lochinara-600"
+                          className="h-3 w-3 text-lochinara-600"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
