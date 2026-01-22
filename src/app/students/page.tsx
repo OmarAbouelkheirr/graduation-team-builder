@@ -28,10 +28,10 @@ const TRACKS = [
 ];
 
 // Function to generate avatar URL using DiceBear API
-// Uses lorelei style for programmer avatars
+// Uses bottts-neutral style - fixed avatars
 function getAvatarUrl(seed: string): string {
   const encodedSeed = encodeURIComponent(seed);
-  return `https://api.dicebear.com/7.x/lorelei/svg?seed=${encodedSeed}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf,3b82f6,2563eb`;
+  return `https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${encodedSeed}`;
 }
 
 export default function StudentsPage() {

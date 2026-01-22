@@ -16,6 +16,7 @@ interface AdminStudent {
   skills: string[];
   bio: string;
   preferences?: string;
+  avatar?: string;
   status: StudentStatus;
   featured?: boolean;
   createdAt?: Date | string;
@@ -1288,6 +1289,7 @@ function EditStudentForm({
     track: student.track,
     skills: student.skills.join(", "),
     bio: student.bio,
+    avatar: student.avatar || "",
   });
   const [saving, setSaving] = useState(false);
 
@@ -1304,6 +1306,7 @@ function EditStudentForm({
       track: form.track,
       skills: form.skills.split(",").map((s) => s.trim()).filter(Boolean),
       bio: form.bio,
+      avatar: form.avatar || undefined,
     });
     setSaving(false);
   }
@@ -1416,6 +1419,65 @@ function EditStudentForm({
           onChange={(e) => setForm((f) => ({ ...f, skills: e.target.value }))}
           placeholder="React, Python, Node.js"
         />
+      </div>
+
+      {/* Avatar Selection */}
+      <div>
+        <label className="mb-2 block text-sm font-medium text-zinc-700">
+          Avatar
+        </label>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {[
+            { id: "chase", seed: "Chase" },
+            { id: "jocelyn", seed: "Jocelyn" },
+            { id: "brooklynn", seed: "Brooklynn" },
+            { id: "robert", seed: "Robert" },
+            { id: "maria", seed: "Maria" },
+            { id: "caleb", seed: "Caleb" },
+            { id: "jude", seed: "Jude" },
+            { id: "katherine", seed: "Katherine" },
+          ].map((avatar) => {
+            const getAvatarUrl = (seed: string) => {
+              const encodedSeed = encodeURIComponent(seed);
+              return `https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${encodedSeed}`;
+            };
+            return (
+              <button
+                key={avatar.id}
+                type="button"
+                onClick={() => setForm((f) => ({ ...f, avatar: avatar.seed }))}
+                className={`relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 transition-all hover:scale-110 sm:h-12 sm:w-12 ${
+                  form.avatar === avatar.seed
+                    ? "border-lochinara-500 ring-2 ring-lochinara-200"
+                    : "border-zinc-300 hover:border-lochinara-300"
+                }`}
+              >
+                <img
+                  src={getAvatarUrl(avatar.seed)}
+                  alt={avatar.id}
+                  className="h-full w-full object-cover"
+                />
+                {form.avatar === avatar.seed && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-lochinara-500/20">
+                    <svg
+                      className="h-4 w-4 text-lochinara-600"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       <div>

@@ -14,6 +14,24 @@ const TRACKS = [
   "UX/UI Design",
 ];
 
+// 8 Fixed Bottts Neutral Avatars
+const AVATARS = [
+  { id: "chase", seed: "Chase", label: "Chase", gender: "neutral" },
+  { id: "jocelyn", seed: "Jocelyn", label: "Jocelyn", gender: "neutral" },
+  { id: "brooklynn", seed: "Brooklynn", label: "Brooklynn", gender: "neutral" },
+  { id: "robert", seed: "Robert", label: "Robert", gender: "neutral" },
+  { id: "maria", seed: "Maria", label: "Maria", gender: "neutral" },
+  { id: "caleb", seed: "Caleb", label: "Caleb", gender: "neutral" },
+  { id: "jude", seed: "Jude", label: "Jude", gender: "neutral" },
+  { id: "katherine", seed: "Katherine", label: "Katherine", gender: "neutral" },
+];
+
+function getAvatarUrl(seed: string): string {
+  // Using "bottts-neutral" style - fixed avatars
+  const encodedSeed = encodeURIComponent(seed);
+  return `https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${encodedSeed}`;
+}
+
 interface StudentData {
   _id: string;
   fullName: string;
@@ -25,6 +43,7 @@ interface StudentData {
   track: string;
   skills: string[];
   bio: string;
+  avatar?: string;
 }
 
 export default function EditPage() {
@@ -47,6 +66,7 @@ export default function EditPage() {
     track: "",
     skills: [] as string[],
     bio: "",
+    avatar: "",
   });
   const [skillInput, setSkillInput] = useState("");
 
@@ -121,6 +141,7 @@ export default function EditPage() {
           track: data.track,
           skills: data.skills || [],
           bio: data.bio,
+          avatar: data.avatar || "",
         });
       }
     } catch {
@@ -147,6 +168,7 @@ export default function EditPage() {
           track: form.track,
           skills: form.skills,
           bio: form.bio,
+          avatar: form.avatar || undefined,
         }),
       });
       const data = await res.json();
@@ -436,6 +458,53 @@ export default function EditPage() {
               <div className="text-xs text-zinc-500">
                 {form.bio.length}/500
               </div>
+            </div>
+
+            {/* Avatar Selection */}
+            <div className="space-y-1.5">
+              <label className="text-sm font-medium text-zinc-700">
+                Avatar <span className="text-red-500">*</span>
+              </label>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                {AVATARS.map((avatar) => (
+                  <button
+                    key={avatar.id}
+                    type="button"
+                    onClick={() => setForm((f) => ({ ...f, avatar: avatar.seed }))}
+                    className={`relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 transition-all hover:scale-110 sm:h-14 sm:w-14 ${
+                      form.avatar === avatar.seed
+                        ? "border-lochinara-500 ring-2 ring-lochinara-200"
+                        : "border-zinc-300 hover:border-lochinara-300"
+                    }`}
+                  >
+                    <img
+                      src={getAvatarUrl(avatar.seed)}
+                      alt={avatar.label}
+                      className="h-full w-full object-cover"
+                    />
+                    {form.avatar === avatar.seed && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-lochinara-500/20">
+                        <svg
+                          className="h-5 w-5 text-lochinara-600"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
+                    )}
+                  </button>
+                ))}
+              </div>
+              {!form.avatar && (
+                <p className="text-xs text-red-500">Please select an avatar</p>
+              )}
             </div>
 
             <div className="flex gap-3 pt-4">

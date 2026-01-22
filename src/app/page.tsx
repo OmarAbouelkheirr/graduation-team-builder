@@ -62,23 +62,22 @@ interface FormState {
   avatar: string;
 }
 
-// 10 Young Programmer Avatars (6 male, 4 female) - Using "open-peeps" style for young programmers
+// 8 Fixed Bottts Neutral Avatars
 const AVATARS = [
-  { id: "young-male-1", seed: "young-male-1", label: "Programmer 1", gender: "male" },
-  { id: "young-male-2", seed: "young-male-2", label: "Programmer 2", gender: "male" },
-  { id: "young-male-3", seed: "young-male-3", label: "Programmer 3", gender: "male" },
-  { id: "young-male-4", seed: "young-male-4", label: "Programmer 4", gender: "male" },
-  { id: "young-male-5", seed: "young-male-5", label: "Programmer 5", gender: "male" },
-  { id: "young-male-6", seed: "young-male-6", label: "Programmer 6", gender: "male" },
-  { id: "young-female-1", seed: "young-female-1", label: "Programmer 7", gender: "female" },
-  { id: "young-female-2", seed: "young-female-2", label: "Programmer 8", gender: "female" },
-  { id: "young-female-3", seed: "young-female-3", label: "Programmer 9", gender: "female" },
-  { id: "young-female-4", seed: "young-female-4", label: "Programmer 10", gender: "female" },
+  { id: "chase", seed: "Chase", label: "Chase", gender: "neutral" },
+  { id: "jocelyn", seed: "Jocelyn", label: "Jocelyn", gender: "neutral" },
+  { id: "brooklynn", seed: "Brooklynn", label: "Brooklynn", gender: "neutral" },
+  { id: "robert", seed: "Robert", label: "Robert", gender: "neutral" },
+  { id: "maria", seed: "Maria", label: "Maria", gender: "neutral" },
+  { id: "caleb", seed: "Caleb", label: "Caleb", gender: "neutral" },
+  { id: "jude", seed: "Jude", label: "Jude", gender: "neutral" },
+  { id: "katherine", seed: "Katherine", label: "Katherine", gender: "neutral" },
 ];
 
 function getAvatarUrl(seed: string): string {
-  // Using "notionists" style for programmer avatars - gives professional, clean look
-  return `https://api.dicebear.com/7.x/notionists/svg?seed=${seed}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf,3b82f6,2563eb`;
+  // Using "bottts-neutral" style - fixed avatars
+  const encodedSeed = encodeURIComponent(seed);
+  return `https://api.dicebear.com/7.x/bottts-neutral/svg?seed=${encodedSeed}`;
 }
 
 export default function Home() {
@@ -338,7 +337,7 @@ export default function Home() {
                 Select a robot avatar that represents you.
               </p>
             </div>
-            <div className="grid grid-cols-5 gap-3">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
               {AVATARS.map((avatar) => (
                 <button
                   key={avatar.id}
@@ -364,9 +363,6 @@ export default function Home() {
                       </svg>
                     </div>
                   )}
-                  <div className="mt-0.5 text-center text-[10px] text-zinc-600">
-                    {avatar.gender === "female" ? "👩" : "👨"}
-                  </div>
                 </button>
               ))}
             </div>
