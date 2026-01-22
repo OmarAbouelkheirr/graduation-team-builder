@@ -10,6 +10,19 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Lochinara Color Palette - Professional Blue (Harmonized with Zinc) */
+  --color-lochinara-50: #eff6ff;   /* Very light blue - matches zinc-50 tone */
+  --color-lochinara-100: #dbeafe;  /* Light blue - matches zinc-100 tone */
+  --color-lochinara-200: #bfdbfe;  /* Soft blue - matches zinc-200 tone */
+  --color-lochinara-300: #93c5fd;  /* Medium light blue */
+  --color-lochinara-400: #60a5fa;  /* Medium blue */
+  --color-lochinara-500: #3b82f6;  /* Primary blue - professional and harmonious */
+  --color-lochinara-600: #2563eb;  /* Hover state - deeper blue */
+  --color-lochinara-700: #1d4ed8;  /* Active state - rich blue */
+  --color-lochinara-800: #1e40af;  /* Dark blue */
+  --color-lochinara-900: #1e3a8a;  /* Very dark blue */
+  --color-lochinara-950: #172554;  /* Darkest blue */
 }
 
 @media (prefers-color-scheme: dark) {

@@ -13,6 +13,7 @@ interface PublicStudent {
   github?: string;
   portfolio?: string;
   telegram?: string;
+  avatar?: string;
 }
 
 const TRACKS = [
@@ -24,6 +25,13 @@ const TRACKS = [
   "Cybersecurity",
   "UX/UI Design",
 ];
+
+// Function to generate avatar URL using DiceBear API
+// Uses notionists style for programmer avatars
+function getAvatarUrl(seed: string): string {
+  const encodedSeed = encodeURIComponent(seed);
+  return `https://api.dicebear.com/7.x/notionists/svg?seed=${encodedSeed}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc,ffdfbf,3b82f6,2563eb`;
+}
 
 export default function StudentsPage() {
   const [students, setStudents] = useState<PublicStudent[]>([]);
@@ -113,7 +121,7 @@ export default function StudentsPage() {
               <input
                 type="text"
                 placeholder="Search by name, skill, or keyword..."
-                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 pr-10 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 pr-10 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={(e) => {
@@ -126,7 +134,7 @@ export default function StudentsPage() {
           <div className="flex gap-2">
             <button
               onClick={() => void fetchStudents()}
-              className="rounded-xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:shadow-md hover:brightness-110"
+              className="rounded-xl bg-gradient-to-r from-lochinara-500 to-lochinara-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-all hover:shadow-md hover:brightness-110"
             >
               Apply
             </button>
@@ -156,7 +164,7 @@ export default function StudentsPage() {
                   setStudents([]);
                   void fetchStudents();
                 }}
-                className="text-xs text-fuchsia-600 hover:text-fuchsia-700 font-medium"
+                className="text-xs text-lochinara-600 hover:text-lochinara-700 font-medium"
               >
                 Clear All
               </button>
@@ -169,7 +177,7 @@ export default function StudentsPage() {
                 onClick={() => setSelectedTrack("")}
                 className={`flex-shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-xs font-medium transition-all ${
                   !selectedTrack
-                    ? "bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 text-white shadow-md"
+                    ? "bg-gradient-to-r from-lochinara-500 to-lochinara-600 text-white shadow-md"
                     : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 active:bg-zinc-300"
                 }`}
               >
@@ -182,7 +190,7 @@ export default function StudentsPage() {
                   onClick={() => setSelectedTrack(t)}
                   className={`flex-shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-xs font-medium transition-all ${
                     selectedTrack === t
-                      ? "bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 text-white shadow-md"
+                      ? "bg-gradient-to-r from-lochinara-500 to-lochinara-600 text-white shadow-md"
                       : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 active:bg-zinc-300"
                   }`}
                 >
@@ -223,8 +231,30 @@ export default function StudentsPage() {
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <div className="mb-3 flex items-start gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-rose-500 text-base font-semibold text-white sm:h-12 sm:w-12 sm:text-lg">
-                    {s.fullName.charAt(0)}
+                  <div className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full ring-2 ring-lochinara-200 bg-lochinara-50 sm:h-12 sm:w-12">
+                    {s.avatar ? (
+                      <img
+                        src={getAvatarUrl(s.avatar)}
+                        alt={s.fullName}
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                        onError={(e) => {
+                          // Fallback to gradient with initial if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          if (target.parentElement) {
+                            target.parentElement.className = "flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-lochinara-500 to-lochinara-600 text-base font-semibold text-white sm:h-12 sm:w-12 sm:text-lg";
+                            const fallbackText = document.createTextNode(s.fullName.charAt(0).toUpperCase());
+                            target.parentElement.textContent = '';
+                            target.parentElement.appendChild(fallbackText);
+                          }
+                        }}
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-lochinara-500 to-lochinara-600 text-base font-semibold text-white sm:text-lg">
+                        {s.fullName.charAt(0).toUpperCase()}
+                      </div>
+                    )}
                   </div>
                   <div className="min-w-0 flex-1">
                     <h3 className="truncate font-semibold text-zinc-900">{s.fullName}</h3>
@@ -251,8 +281,11 @@ export default function StudentsPage() {
                       href={s.linkedIn}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-3 py-1.5 text-xs font-medium text-white transition-all hover:brightness-110"
+                      className="inline-flex items-center justify-center rounded-lg bg-[#0077b5] px-3 py-1.5 text-xs font-medium text-white transition-all hover:bg-[#006399] shadow-sm"
                     >
+                      <svg className="h-3.5 w-3.5 mr-1.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
                       LinkedIn
                     </a>
                   )}
@@ -283,7 +316,7 @@ export default function StudentsPage() {
                     href={`https://t.me/${s.telegram.replace(/^@/, "")}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#0088cc] px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#0077b5]"
+                    className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#0088cc] px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-[#006fa3] shadow-md"
                   >
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.559z"/>
@@ -306,7 +339,7 @@ export default function StudentsPage() {
               >
                 Previous
               </button>
-              <button className="rounded-lg bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-3 py-1.5 text-sm font-medium text-white">
+              <button className="rounded-lg bg-gradient-to-r from-lochinara-500 to-lochinara-600 px-3 py-1.5 text-sm font-medium text-white">
                 1
               </button>
               <button className="rounded-lg border border-zinc-300 px-3 py-1.5 text-sm text-zinc-700 hover:bg-zinc-50">

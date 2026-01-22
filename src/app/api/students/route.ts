@@ -30,6 +30,7 @@ export async function GET(req: NextRequest) {
       github: s.github,
       portfolio: s.portfolio,
       telegram: s.telegram,
+      avatar: s.avatar,
       status: s.status,
       createdAt: s.createdAt,
     }));
@@ -58,6 +59,7 @@ export async function POST(req: NextRequest) {
       track,
       skills,
       bio,
+      avatar,
     } = body ?? {};
 
     if (
@@ -85,6 +87,7 @@ export async function POST(req: NextRequest) {
       track,
       skills,
       bio,
+      avatar,
     });
 
     return NextResponse.json(

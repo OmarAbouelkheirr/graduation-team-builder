@@ -200,7 +200,7 @@ export default function EditPage() {
               <input
                 type="email"
                 placeholder="your.email@example.com"
-                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -212,7 +212,7 @@ export default function EditPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110 disabled:opacity-50"
+              className="w-full rounded-xl bg-gradient-to-r from-lochinara-500 to-lochinara-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110 disabled:opacity-50"
             >
               {loading ? "Sending..." : "Send Verification Code"}
             </button>
@@ -230,7 +230,7 @@ export default function EditPage() {
                 type="text"
                 placeholder="Enter 6-digit code"
                 maxLength={6}
-                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-center text-2xl font-mono tracking-widest shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-center text-2xl font-mono tracking-widest shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                 value={otpCode}
                 onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ""))}
                 required
@@ -253,7 +253,7 @@ export default function EditPage() {
               <button
                 type="submit"
                 disabled={loading || otpCode.length !== 6}
-                className="flex-1 rounded-xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110 disabled:opacity-50"
+                className="flex-1 rounded-xl bg-gradient-to-r from-lochinara-500 to-lochinara-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110 disabled:opacity-50"
               >
                 {loading ? "Verifying..." : "Verify Code"}
               </button>
@@ -271,7 +271,7 @@ export default function EditPage() {
                 </label>
                 <input
                   type="text"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                   value={form.fullName}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, fullName: e.target.value }))
@@ -300,7 +300,7 @@ export default function EditPage() {
                 <input
                   type="url"
                   placeholder="https://linkedin.com/in/yourprofile"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                   value={form.linkedIn}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, linkedIn: e.target.value }))
@@ -315,7 +315,7 @@ export default function EditPage() {
                 <input
                   type="url"
                   placeholder="https://github.com/yourusername"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                   value={form.github}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, github: e.target.value }))
@@ -332,7 +332,7 @@ export default function EditPage() {
                 <input
                   type="url"
                   placeholder="https://yourportfolio.com"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                   value={form.portfolio}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, portfolio: e.target.value }))
@@ -346,7 +346,7 @@ export default function EditPage() {
                 <input
                   type="text"
                   placeholder="@username"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                   value={form.telegram}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, telegram: e.target.value }))
@@ -361,7 +361,7 @@ export default function EditPage() {
                 Track <span className="text-red-500">*</span>
               </label>
               <select
-                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                 value={form.track}
                 onChange={(e) =>
                   setForm((f) => ({ ...f, track: e.target.value }))
@@ -385,7 +385,7 @@ export default function EditPage() {
                 <input
                   type="text"
                   placeholder="Add a skill and press Enter"
-                  className="flex-1 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                  className="flex-1 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                   value={skillInput}
                   onChange={(e) => setSkillInput(e.target.value)}
                   onKeyDown={(e) => {
@@ -408,7 +408,7 @@ export default function EditPage() {
                   <span
                     key={skill}
                     onClick={() => removeSkill(skill)}
-                    className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-indigo-100 via-fuchsia-100 to-rose-100 px-3 py-1 text-xs font-medium text-zinc-700 cursor-pointer hover:from-indigo-200 hover:via-fuchsia-200 hover:to-rose-200 transition-all"
+                    className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-lochinara-100 to-lochinara-200 px-3 py-1 text-xs font-medium text-zinc-700 cursor-pointer hover:from-lochinara-200 hover:to-lochinara-300 transition-all"
                   >
                     {skill}
                     <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -425,7 +425,7 @@ export default function EditPage() {
               </label>
               <textarea
                 placeholder="Tell potential teammates about your project interests, past projects, or what role you'd like to take..."
-                className="min-h-[120px] w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                className="min-h-[120px] w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                 value={form.bio}
                 onChange={(e) =>
                   setForm((f) => ({ ...f, bio: e.target.value }))
@@ -449,7 +449,7 @@ export default function EditPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex-1 rounded-xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110 disabled:opacity-50"
+                className="flex-1 rounded-xl bg-gradient-to-r from-lochinara-500 to-lochinara-600 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110 disabled:opacity-50"
               >
                 {loading ? "Updating..." : "Update Profile"}
               </button>

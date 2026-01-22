@@ -27,7 +27,7 @@ export function Toast({ message, type, isVisible, onClose, duration = 3000 }: To
   const styles = {
     success: "bg-emerald-500 text-white",
     error: "bg-red-500 text-white",
-    info: "bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 text-white",
+    info: "bg-gradient-to-r from-lochinara-500 to-lochinara-600 text-white",
     warning: "bg-amber-500 text-white",
   };
 

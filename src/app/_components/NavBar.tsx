@@ -62,7 +62,7 @@ export function NavBar() {
       >
         <span className="relative">
           {siteName}
-          <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-rose-500 transition-all duration-300 group-hover:w-full" />
+          <span className="absolute -bottom-1 left-0 h-[2px] w-0 rounded-full bg-gradient-to-r from-lochinara-500 to-lochinara-600 transition-all duration-300 group-hover:w-full" />
         </span>
       </Link>
 

@@ -42,7 +42,7 @@ export function MaintenanceCheck({ children }: { children: React.ReactNode }) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
-          <div className="mb-4 h-8 w-8 animate-spin rounded-full border-4 border-fuchsia-600 border-t-transparent mx-auto" />
+          <div className="mb-4 h-8 w-8 animate-spin rounded-full border-4 border-lochinara-600 border-t-transparent mx-auto" />
           <p className="text-sm text-zinc-600">Loading...</p>
         </div>
       </div>
@@ -51,12 +51,12 @@ export function MaintenanceCheck({ children }: { children: React.ReactNode }) {
 
   if (maintenanceMode) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-indigo-50 via-fuchsia-50 to-rose-50 p-4">
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-lochinara-50 to-lochinara-100 p-4">
         <div className="max-w-md rounded-2xl bg-white p-8 shadow-xl ring-1 ring-zinc-200 text-center">
           <div className="mb-4 flex justify-center">
-            <div className="rounded-full bg-fuchsia-100 p-4">
+            <div className="rounded-full bg-lochinara-100 p-4">
               <svg
-                className="h-12 w-12 text-fuchsia-600"
+                className="h-12 w-12 text-lochinara-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
