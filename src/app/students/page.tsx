@@ -262,17 +262,19 @@ export default function StudentsPage() {
                   </div>
                 </div>
 
-                <p className="mb-4 line-clamp-3 text-sm text-zinc-700">{s.bio}</p>
+                <p className="mb-3 line-clamp-3 text-sm text-zinc-700">{s.bio}</p>
 
-                <div className="mb-4 flex flex-wrap gap-1.5">
-                  {s.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-700"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+                <div className="mb-4 max-h-20 overflow-y-auto overflow-x-hidden">
+                  <div className="flex flex-wrap gap-1.5">
+                    {s.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="inline-flex rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-700 whitespace-nowrap"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
