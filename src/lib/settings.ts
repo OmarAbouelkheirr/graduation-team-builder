@@ -6,6 +6,7 @@ export interface SiteSettings {
   maintenanceMessage?: string;
   siteName: string;
   siteDescription: string;
+  featuredLabel?: string;
   updatedAt: Date;
 }
 
@@ -14,6 +15,7 @@ const DEFAULT_SETTINGS: Omit<SiteSettings, "_id"> = {
   maintenanceMessage: "We're currently performing maintenance. Please check back soon.",
   siteName: "UniConnect",
   siteDescription: "Graduation Project Team Matching Platform",
+  featuredLabel: "مبرمج المنصة",
   updatedAt: new Date(),
 };
 

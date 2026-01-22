@@ -17,6 +17,7 @@ interface AdminStudent {
   bio: string;
   preferences?: string;
   status: StudentStatus;
+  featured?: boolean;
   createdAt?: Date | string;
 }
 
@@ -25,6 +26,7 @@ interface SiteSettings {
   maintenanceMessage?: string;
   siteName: string;
   siteDescription: string;
+  featuredLabel?: string;
 }
 
 export default function AdminPage() {
@@ -50,12 +52,14 @@ export default function AdminPage() {
     maintenanceMessage: "We're currently performing maintenance. Please check back soon.",
     siteName: "UniConnect",
     siteDescription: "Graduation Project Team Matching Platform",
+    featuredLabel: "مبرمج المنصة",
   });
   const [settingsForm, setSettingsForm] = useState<SiteSettings>({
     maintenanceMode: false,
     maintenanceMessage: "We're currently performing maintenance. Please check back soon.",
     siteName: "UniConnect",
     siteDescription: "Graduation Project Team Matching Platform",
+    featuredLabel: "مبرمج المنصة",
   });
   const [settingsLoading, setSettingsLoading] = useState(false);
   const [settingsChanged, setSettingsChanged] = useState(false);
@@ -288,6 +292,33 @@ export default function AdminPage() {
       );
       setAllStudents((prev) =>
         prev.map((s) => (s._id === id ? { ...(s as AdminStudent), status } : s))
+      );
+    } catch {
+      setError("Unable to connect to server.");
+    }
+  }
+
+  async function toggleFeatured(id: string, currentFeatured: boolean) {
+    setError(null);
+    try {
+      const res = await fetch(`/api/students/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-key": adminKey,
+        },
+        body: JSON.stringify({ featured: !currentFeatured }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Failed to update featured status.");
+        return;
+      }
+      setStudents((prev) =>
+        prev.map((s) => (s._id === id ? { ...(s as AdminStudent), featured: !currentFeatured } : s))
+      );
+      setAllStudents((prev) =>
+        prev.map((s) => (s._id === id ? { ...(s as AdminStudent), featured: !currentFeatured } : s))
       );
     } catch {
       setError("Unable to connect to server.");
@@ -992,6 +1023,17 @@ export default function AdminPage() {
                             <td className="px-4 py-3">
                               <div className="flex flex-wrap gap-1">
                                 <button
+                                  onClick={() => toggleFeatured(s._id, s.featured || false)}
+                                  className={`rounded-lg px-2 py-1 text-[10px] transition-all sm:text-xs ${
+                                    s.featured
+                                      ? "bg-gradient-to-r from-amber-400 to-amber-500 text-white hover:from-amber-500 hover:to-amber-600"
+                                      : "bg-zinc-200 text-zinc-600 hover:bg-zinc-300"
+                                  }`}
+                                  title={s.featured ? "Remove Featured" : "Mark as Featured"}
+                                >
+                                  ⭐
+                                </button>
+                                <button
                                   onClick={() => updateStatus(s._id, "approved")}
                                   className="rounded-lg bg-emerald-600 px-2 py-1 text-[10px] text-white transition-all hover:bg-emerald-700 sm:text-xs"
                                   title="Approve"
@@ -1165,6 +1207,22 @@ export default function AdminPage() {
                       setSettingsChanged(true);
                     }}
                   />
+                </div>
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-zinc-700">
+                    Featured Students Label
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
+                    value={settingsForm.featuredLabel || "مبرمج المنصة"}
+                    onChange={(e) => {
+                      setSettingsForm((prev) => ({ ...prev, featuredLabel: e.target.value }));
+                      setSettingsChanged(true);
+                    }}
+                    placeholder="مبرمج المنصة"
+                  />
+                  <p className="mt-1 text-xs text-zinc-500">This label will appear for featured students</p>
                 </div>
               </div>
             </div>

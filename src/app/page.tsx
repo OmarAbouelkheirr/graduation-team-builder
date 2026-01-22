@@ -155,7 +155,11 @@ export default function Home() {
       const data = await res.json();
 
       if (!res.ok) {
-        showToast(data.error || "Failed to save data.", "error");
+        if (res.status === 409) {
+          showToast(data.error || "This email is already registered.", "error");
+        } else {
+          showToast(data.error || "Failed to save data.", "error");
+        }
       } else {
         // Show success modal
         setShowSuccessModal(true);

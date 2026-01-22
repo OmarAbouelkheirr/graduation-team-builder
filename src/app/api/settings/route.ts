@@ -10,6 +10,7 @@ export async function GET() {
         maintenanceMessage: settings.maintenanceMessage,
         siteName: settings.siteName,
         siteDescription: settings.siteDescription,
+        featuredLabel: settings.featuredLabel || "مبرمج المنصة",
       },
       { status: 200 }
     );

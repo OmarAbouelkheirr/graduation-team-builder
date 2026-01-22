@@ -17,6 +17,7 @@ export interface Student {
   avatar?: string;
   preferences?: string;
   status: StudentStatus;
+  featured?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

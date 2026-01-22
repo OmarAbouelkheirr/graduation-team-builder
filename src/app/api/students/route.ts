@@ -31,11 +31,19 @@ export async function GET(req: NextRequest) {
       portfolio: s.portfolio,
       telegram: s.telegram,
       avatar: s.avatar,
+      featured: s.featured,
       status: s.status,
       createdAt: s.createdAt,
     }));
 
-    return NextResponse.json(sanitized, { status: 200 });
+    // Sort: featured students first
+    const sorted = sanitized.sort((a, b) => {
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+      return 0;
+    });
+
+    return NextResponse.json(sorted, { status: 200 });
   } catch (error) {
     console.error("Error listing students", error);
     return NextResponse.json(
@@ -77,9 +85,23 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Check if email already exists
+    const { getDb } = await import("@/lib/db");
+    const db = await getDb();
+    const existingStudent = await db.collection("students").findOne({ 
+      email: email.toLowerCase().trim() 
+    });
+
+    if (existingStudent) {
+      return NextResponse.json(
+        { error: "This email is already registered. Please use a different email address." },
+        { status: 409 }
+      );
+    }
+
     const student = await createStudent({
       fullName,
-      email,
+      email: email.toLowerCase().trim(),
       linkedIn,
       github,
       portfolio,
