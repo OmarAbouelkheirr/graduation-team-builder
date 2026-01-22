@@ -19,6 +19,7 @@ interface AdminStudent {
   avatar?: string;
   status: StudentStatus;
   featured?: boolean;
+  special?: boolean;
   createdAt?: Date | string;
 }
 
@@ -28,6 +29,7 @@ interface SiteSettings {
   siteName: string;
   siteDescription: string;
   featuredLabel?: string;
+  specialLabel?: string;
 }
 
 export default function AdminPage() {
@@ -54,6 +56,7 @@ export default function AdminPage() {
     siteName: "UniConnect",
     siteDescription: "Graduation Project Team Matching Platform",
     featuredLabel: "مبرمج المنصة",
+    specialLabel: "مميز",
   });
   const [settingsForm, setSettingsForm] = useState<SiteSettings>({
     maintenanceMode: false,
@@ -61,6 +64,7 @@ export default function AdminPage() {
     siteName: "UniConnect",
     siteDescription: "Graduation Project Team Matching Platform",
     featuredLabel: "مبرمج المنصة",
+    specialLabel: "مميز",
   });
   const [settingsLoading, setSettingsLoading] = useState(false);
   const [settingsChanged, setSettingsChanged] = useState(false);
@@ -320,6 +324,33 @@ export default function AdminPage() {
       );
       setAllStudents((prev) =>
         prev.map((s) => (s._id === id ? { ...(s as AdminStudent), featured: !currentFeatured } : s))
+      );
+    } catch {
+      setError("Unable to connect to server.");
+    }
+  }
+
+  async function toggleSpecial(id: string, currentSpecial: boolean) {
+    setError(null);
+    try {
+      const res = await fetch(`/api/students/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-key": adminKey,
+        },
+        body: JSON.stringify({ special: !currentSpecial }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || "Failed to update special status.");
+        return;
+      }
+      setStudents((prev) =>
+        prev.map((s) => (s._id === id ? { ...(s as AdminStudent), special: !currentSpecial } : s))
+      );
+      setAllStudents((prev) =>
+        prev.map((s) => (s._id === id ? { ...(s as AdminStudent), special: !currentSpecial } : s))
       );
     } catch {
       setError("Unable to connect to server.");
@@ -1035,6 +1066,17 @@ export default function AdminPage() {
                                   ⭐
                                 </button>
                                 <button
+                                  onClick={() => toggleSpecial(s._id, s.special || false)}
+                                  className={`rounded-lg px-2 py-1 text-[10px] transition-all sm:text-xs ${
+                                    s.special
+                                      ? "bg-gradient-to-r from-purple-400 to-purple-500 text-white hover:from-purple-500 hover:to-purple-600"
+                                      : "bg-zinc-200 text-zinc-600 hover:bg-zinc-300"
+                                  }`}
+                                  title={s.special ? "Remove Special" : "Mark as Special"}
+                                >
+                                  ✨
+                                </button>
+                                <button
                                   onClick={() => updateStatus(s._id, "approved")}
                                   className="rounded-lg bg-emerald-600 px-2 py-1 text-[10px] text-white transition-all hover:bg-emerald-700 sm:text-xs"
                                   title="Approve"
@@ -1224,6 +1266,22 @@ export default function AdminPage() {
                     placeholder="مبرمج المنصة"
                   />
                   <p className="mt-1 text-xs text-zinc-500">This label will appear for featured students</p>
+                </div>
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-zinc-700">
+                    Special Students Label
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
+                    value={settingsForm.specialLabel || "مميز"}
+                    onChange={(e) => {
+                      setSettingsForm((prev) => ({ ...prev, specialLabel: e.target.value }));
+                      setSettingsChanged(true);
+                    }}
+                    placeholder="مميز"
+                  />
+                  <p className="mt-1 text-xs text-zinc-500">This label will appear for special students (without pin icon)</p>
                 </div>
               </div>
             </div>

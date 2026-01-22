@@ -32,14 +32,17 @@ export async function GET(req: NextRequest) {
       telegram: s.telegram,
       avatar: s.avatar,
       featured: s.featured,
+      special: s.special,
       status: s.status,
       createdAt: s.createdAt,
     }));
 
-    // Sort: featured students first
+    // Sort: featured students first, then special, then others
     const sorted = sanitized.sort((a, b) => {
       if (a.featured && !b.featured) return -1;
       if (!a.featured && b.featured) return 1;
+      if (a.special && !b.special) return -1;
+      if (!a.special && b.special) return 1;
       return 0;
     });
 

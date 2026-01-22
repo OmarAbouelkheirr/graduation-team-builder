@@ -15,6 +15,7 @@ interface PublicStudent {
   telegram?: string;
   avatar?: string;
   featured?: boolean;
+  special?: boolean;
 }
 
 const TRACKS = [
@@ -43,6 +44,7 @@ export default function StudentsPage() {
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [selectedStudent, setSelectedStudent] = useState<PublicStudent | null>(null);
   const [featuredLabel, setFeaturedLabel] = useState<string>("مبرمج المنصة");
+  const [specialLabel, setSpecialLabel] = useState<string>("مميز");
 
   // initial load
   useEffect(() => {
@@ -55,8 +57,13 @@ export default function StudentsPage() {
     try {
       const res = await fetch("/api/settings");
       const data = await res.json();
-      if (res.ok && data.featuredLabel) {
-        setFeaturedLabel(data.featuredLabel);
+      if (res.ok) {
+        if (data.featuredLabel) {
+          setFeaturedLabel(data.featuredLabel);
+        }
+        if (data.specialLabel) {
+          setSpecialLabel(data.specialLabel);
+        }
       }
     } catch {
       // Use default
@@ -247,6 +254,8 @@ export default function StudentsPage() {
                 className={`group relative cursor-pointer rounded-xl p-4 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 sm:p-5 animate-in fade-in slide-in-from-bottom-4 ${
                   s.featured
                     ? "border-2 border-amber-400 bg-gradient-to-br from-amber-50/50 to-white"
+                    : s.special
+                    ? "border-2 border-purple-400 bg-gradient-to-br from-purple-50/50 to-white"
                     : "border border-zinc-200 bg-white"
                 }`}
                 style={{ animationDelay: `${index * 50}ms` }}
@@ -291,6 +300,9 @@ export default function StudentsPage() {
                     <p className="truncate text-xs text-zinc-600">{s.track}</p>
                     {s.featured && (
                       <p className="mt-1 text-xs font-medium text-amber-600">{featuredLabel}</p>
+                    )}
+                    {s.special && (
+                      <p className="mt-1 text-xs font-medium text-purple-600">{specialLabel}</p>
                     )}
                   </div>
                 </div>
@@ -447,6 +459,11 @@ export default function StudentsPage() {
                     {selectedStudent.featured && (
                       <span className="flex-shrink-0 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 px-3 py-1 text-xs font-semibold text-white shadow-sm">
                         {featuredLabel}
+                      </span>
+                    )}
+                    {selectedStudent.special && (
+                      <span className="flex-shrink-0 rounded-full bg-gradient-to-r from-purple-400 to-purple-500 px-3 py-1 text-xs font-semibold text-white shadow-sm">
+                        {specialLabel}
                       </span>
                     )}
                   </div>

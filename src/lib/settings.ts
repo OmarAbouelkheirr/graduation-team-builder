@@ -7,6 +7,7 @@ export interface SiteSettings {
   siteName: string;
   siteDescription: string;
   featuredLabel?: string;
+  specialLabel?: string;
   updatedAt: Date;
 }
 
@@ -16,6 +17,7 @@ const DEFAULT_SETTINGS: Omit<SiteSettings, "_id"> = {
   siteName: "UniConnect",
   siteDescription: "Graduation Project Team Matching Platform",
   featuredLabel: "مبرمج المنصة",
+  specialLabel: "مميز",
   updatedAt: new Date(),
 };
 

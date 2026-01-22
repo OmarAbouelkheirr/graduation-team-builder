@@ -18,6 +18,7 @@ export interface Student {
   preferences?: string;
   status: StudentStatus;
   featured?: boolean;
+  special?: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

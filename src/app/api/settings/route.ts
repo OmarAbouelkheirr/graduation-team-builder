@@ -11,6 +11,7 @@ export async function GET() {
         siteName: settings.siteName,
         siteDescription: settings.siteDescription,
         featuredLabel: settings.featuredLabel || "مبرمج المنصة",
+        specialLabel: settings.specialLabel || "مميز",
       },
       { status: 200 }
     );

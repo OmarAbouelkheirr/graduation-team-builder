@@ -17,7 +17,6 @@ export function DynamicTitle() {
     }
     void updateTitle();
 
-    // Listen for settings updates via custom event
     const handleSettingsUpdate = (event: Event) => {
       const customEvent = event as CustomEvent<{ siteName?: string }>;
       if (customEvent.detail?.siteName) {
@@ -25,7 +24,6 @@ export function DynamicTitle() {
       }
     };
 
-    // Listen for storage events (cross-tab communication)
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === "settingsUpdated" && e.newValue) {
         try {
@@ -48,5 +46,5 @@ export function DynamicTitle() {
     };
   }, []);
 
-  return null; // This component doesn't render anything
+  return null; 
 }
