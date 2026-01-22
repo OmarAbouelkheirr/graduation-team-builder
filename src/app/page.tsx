@@ -378,13 +378,15 @@ export default function Home() {
                 Select your major and highlight your technical strengths.
               </p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {TRACKS.map((t) => (
+            <div className="grid grid-cols-2 gap-3">
+              {TRACKS.map((t, index) => (
                 <button
                   key={t.id}
                   type="button"
                   onClick={() => setForm((f) => ({ ...f, track: t.label }))}
                   className={`group relative rounded-xl border-2 p-3 text-left transition-all sm:p-4 ${
+                    index === TRACKS.length - 1 ? "col-span-2" : ""
+                  } ${
                     form.track === t.label
                       ? "border-lochinara-500 bg-lochinara-100 shadow-md"
                       : "border-zinc-200 bg-white hover:border-zinc-300 hover:shadow-sm"
