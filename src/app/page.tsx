@@ -8,8 +8,8 @@ const TRACKS = [
   { 
     id: "web-frontend", 
     label: "Web Development - Frontend", 
-    desc: "React, Vue, Angular, UI/UX",
-    suggestedSkills: ["React", "Vue.js", "Angular", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS", "SASS", "Next.js", "UI/UX Design", "Figma"]
+    desc: "React, Vue, Angular",
+    suggestedSkills: ["React", "Vue.js", "Angular", "TypeScript", "JavaScript", "HTML", "CSS", "Tailwind CSS", "SASS", "Next.js"]
   },
   { 
     id: "web-backend", 
@@ -40,6 +40,12 @@ const TRACKS = [
     label: "Cybersecurity", 
     desc: "Network Security, Ethical Hacking",
     suggestedSkills: ["Network Security", "Ethical Hacking", "Penetration Testing", "Cybersecurity", "Linux", "Wireshark", "Cryptography", "Security Auditing", "OWASP", "Firewall"]
+  },
+  { 
+    id: "ux-ui", 
+    label: "UX/UI Design", 
+    desc: "User Experience, Interface Design, Prototyping",
+    suggestedSkills: ["Figma", "Adobe XD", "Sketch", "UI Design", "UX Design", "User Research", "Wireframing", "Prototyping", "Design Systems", "Interaction Design", "Usability Testing", "Accessibility"]
   },
 ];
 
@@ -94,7 +100,7 @@ export default function Home() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!form.track) {
-      showToast("Please select your Academic Focus.", "warning");
+      showToast("Please select your Track.", "warning");
       return;
     }
     setSubmitting(true);
@@ -287,11 +293,11 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Academic Focus - Track Selection */}
+          {/* Track Selection */}
           <section className="space-y-4">
             <div>
               <h2 className="text-lg font-semibold text-zinc-900">
-                Academic Focus
+                Track
               </h2>
               <p className="mt-1 text-sm text-zinc-600">
                 Select your major and highlight your technical strengths.
@@ -354,14 +360,24 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <input
-                type="text"
-                placeholder="Type a skill and press Enter..."
-                className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
-                value={skillInput}
-                onChange={(e) => setSkillInput(e.target.value)}
-                onKeyDown={handleSkillKeyDown}
-              />
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Type a skill and press Enter or click Add..."
+                  className="flex-1 rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20"
+                  value={skillInput}
+                  onChange={(e) => setSkillInput(e.target.value)}
+                  onKeyDown={handleSkillKeyDown}
+                />
+                <button
+                  type="button"
+                  onClick={addSkill}
+                  disabled={!skillInput.trim()}
+                  className="rounded-xl bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-rose-600 px-6 py-2.5 text-sm font-medium text-white shadow-lg transition-all hover:shadow-xl hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:brightness-100"
+                >
+                  Add
+                </button>
+              </div>
               
               {/* Suggested Skills based on selected track */}
               {form.track && (

@@ -52,9 +52,8 @@ export async function GET(
   _req: NextRequest,
   { params }: { params: ParamsPromise }
 ) {
-  const { id } = await params;
-
   try {
+    const { id } = await params;
     const student = await getStudentById(id);
     if (!student) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });

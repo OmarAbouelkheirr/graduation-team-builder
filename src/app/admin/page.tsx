@@ -355,6 +355,7 @@ export default function AdminPage() {
     "Mobile Development",
     "AI & Data",
     "Cybersecurity",
+    "UX/UI Design",
   ];
 
   const totalApplications = allStudents.length;

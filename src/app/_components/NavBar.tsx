@@ -68,16 +68,22 @@ export function NavBar() {
 
       <div className="flex items-center gap-2 text-xs md:text-sm">
         <Link
-          href="/"
+          href="/students"
           className="rounded-full px-3 py-1 text-zinc-700 transition hover:bg-zinc-100 hover:text-zinc-900"
         >
           Students
         </Link>
         <Link
-          href="/students"
+          href="/"
           className="rounded-full px-3 py-1 text-zinc-700 transition hover:bg-zinc-100 hover:text-zinc-900"
         >
-          My Team
+          Apply
+        </Link>
+        <Link
+          href="/edit"
+          className="rounded-full px-3 py-1 text-zinc-700 transition hover:bg-zinc-100 hover:text-zinc-900"
+        >
+          Edit Profile
         </Link>
 
         {isAdmin && (

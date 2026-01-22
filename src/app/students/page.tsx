@@ -22,6 +22,7 @@ const TRACKS = [
   "Mobile Development",
   "AI & Data",
   "Cybersecurity",
+  "UX/UI Design",
 ];
 
 export default function StudentsPage() {
