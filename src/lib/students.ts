@@ -29,6 +29,27 @@ export interface StudentFilters {
   q?: string;
 }
 
+// Extract Telegram username from link or username
+function extractTelegramUsername(input?: string): string | undefined {
+  if (!input) return undefined;
+  
+  let cleaned = input.trim();
+  
+  // Remove protocol (https://, http://)
+  cleaned = cleaned.replace(/^https?:\/\//i, "");
+  
+  // Remove t.me/ prefix
+  cleaned = cleaned.replace(/^t\.me\//i, "");
+  
+  // Remove @ symbol if present
+  cleaned = cleaned.replace(/^@/, "");
+  
+  // Remove trailing slash and any query parameters
+  cleaned = cleaned.split("/")[0].split("?")[0];
+  
+  return cleaned || undefined;
+}
+
 export async function createStudent(input: {
   fullName: string;
   email: string;
@@ -47,6 +68,7 @@ export async function createStudent(input: {
 
   const student: Student = {
     ...input,
+    telegram: extractTelegramUsername(input.telegram),
     status: "pending",
     createdAt: now,
     updatedAt: now,
@@ -94,11 +116,17 @@ export async function updateStudent(
   const db = await getDb();
   const _id = new ObjectId(id);
 
+  // Clean telegram username if provided
+  const cleanedUpdates = {
+    ...updates,
+    ...(updates.telegram !== undefined && { telegram: extractTelegramUsername(updates.telegram) }),
+  };
+
   const result = await db
     .collection<Student>("students")
     .findOneAndUpdate(
       { _id },
-      { $set: { ...updates, updatedAt: new Date() } },
+      { $set: { ...cleanedUpdates, updatedAt: new Date() } },
       { returnDocument: "after" }
     );
 

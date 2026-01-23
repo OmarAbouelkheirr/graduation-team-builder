@@ -1351,16 +1351,38 @@ function EditStudentForm({
   });
   const [saving, setSaving] = useState(false);
 
+  // Extract Telegram username from link or username
+  function extractTelegramUsername(input: string): string {
+    if (!input) return "";
+    
+    let cleaned = input.trim();
+    
+    // Remove protocol (https://, http://)
+    cleaned = cleaned.replace(/^https?:\/\//i, "");
+    
+    // Remove t.me/ prefix
+    cleaned = cleaned.replace(/^t\.me\//i, "");
+    
+    // Remove @ symbol if present
+    cleaned = cleaned.replace(/^@/, "");
+    
+    // Remove trailing slash and any query parameters
+    cleaned = cleaned.split("/")[0].split("?")[0];
+    
+    return cleaned;
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSaving(true);
+    const cleanTelegram = extractTelegramUsername(form.telegram || "");
     await onSave({
       fullName: form.fullName,
       email: form.email,
       linkedIn: form.linkedIn || undefined,
       github: form.github || undefined,
       portfolio: form.portfolio || undefined,
-      telegram: form.telegram || undefined,
+      telegram: cleanTelegram || undefined,
       track: form.track,
       skills: form.skills.split(",").map((s) => s.trim()).filter(Boolean),
       bio: form.bio,
@@ -1447,7 +1469,13 @@ function EditStudentForm({
             className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
             value={form.telegram}
             onChange={(e) => setForm((f) => ({ ...f, telegram: e.target.value }))}
-            placeholder="@username"
+            onBlur={(e) => {
+              const cleaned = extractTelegramUsername(e.target.value);
+              if (cleaned && cleaned !== e.target.value.trim()) {
+                setForm((f) => ({ ...f, telegram: cleaned }));
+              }
+            }}
+            placeholder="@username or https://t.me/username"
             required
           />
         </div>

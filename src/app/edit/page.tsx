@@ -200,6 +200,27 @@ export default function EditPage() {
     setForm((f) => ({ ...f, skills: f.skills.filter((s) => s !== skill) }));
   }
 
+  // Extract Telegram username from link or username
+  function extractTelegramUsername(input: string): string {
+    if (!input) return "";
+    
+    let cleaned = input.trim();
+    
+    // Remove protocol (https://, http://)
+    cleaned = cleaned.replace(/^https?:\/\//i, "");
+    
+    // Remove t.me/ prefix
+    cleaned = cleaned.replace(/^t\.me\//i, "");
+    
+    // Remove @ symbol if present
+    cleaned = cleaned.replace(/^@/, "");
+    
+    // Remove trailing slash and any query parameters
+    cleaned = cleaned.split("/")[0].split("?")[0];
+    
+    return cleaned;
+  }
+
   return (
     <div className="font-sans text-zinc-900 animate-in fade-in">
       <div className="rounded-xl bg-white/90 p-4 shadow-lg ring-1 ring-zinc-200/70 backdrop-blur transition-all duration-300 sm:rounded-2xl sm:p-6 lg:p-8">
@@ -367,12 +388,18 @@ export default function EditPage() {
                 </label>
                 <input
                   type="text"
-                  placeholder="@username"
+                  placeholder="@username or https://t.me/username"
                   className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-2.5 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                   value={form.telegram}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, telegram: e.target.value }))
                   }
+                  onBlur={(e) => {
+                    const cleaned = extractTelegramUsername(e.target.value);
+                    if (cleaned && cleaned !== e.target.value.trim()) {
+                      setForm((f) => ({ ...f, telegram: cleaned }));
+                    }
+                  }}
                   required
                 />
               </div>
