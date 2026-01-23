@@ -45,12 +45,35 @@ export default function StudentsPage() {
   const [selectedStudent, setSelectedStudent] = useState<PublicStudent | null>(null);
   const [featuredLabel, setFeaturedLabel] = useState<string>("مبرمج المنصة");
   const [specialLabel, setSpecialLabel] = useState<string>("مميز");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(20);
 
   // initial load
   useEffect(() => {
     void fetchStudents();
     void fetchSettings();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Set items per page based on screen size
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 640) {
+        // Mobile: 10 items
+        setItemsPerPage(10);
+      } else {
+        // Desktop: 20 items
+        setItemsPerPage(20);
+      }
+      // Reset to page 1 when screen size changes
+      setCurrentPage(1);
+    }
+
+    // Set initial value
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   async function fetchSettings() {
@@ -80,6 +103,7 @@ export default function StudentsPage() {
 
   useEffect(() => {
     void fetchStudents();
+    setCurrentPage(1); // Reset to page 1 when filters change
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTrack, debouncedQuery]);
 
@@ -113,6 +137,19 @@ export default function StudentsPage() {
   }
 
   const hasFilters = Boolean(selectedTrack || searchQuery);
+
+  // Calculate pagination
+  const totalPages = Math.ceil(students.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentStudents = students.slice(startIndex, endIndex);
+
+  function goToPage(page: number) {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
 
   return (
     <div className="font-sans text-zinc-900 animate-in fade-in">
@@ -247,7 +284,7 @@ export default function StudentsPage() {
       {!loading && !error && students.length > 0 && (
         <>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {students.map((s, index) => (
+            {currentStudents.map((s, index) => (
               <article
                 key={s.id}
                 onClick={() => setSelectedStudent(s)}
@@ -377,19 +414,53 @@ export default function StudentsPage() {
 
           <div className="mt-6 flex flex-col items-center justify-between gap-3 rounded-xl bg-white p-4 shadow-sm ring-1 ring-zinc-200/70 sm:flex-row">
             <span className="text-sm text-zinc-600">
-              Showing 1 to {students.length} of {students.length} results
+              Showing {startIndex + 1} to {Math.min(endIndex, students.length)} of {students.length} results
             </span>
             <div className="flex gap-2">
               <button
-                disabled
-                className="rounded-lg border border-zinc-300 px-3 py-1.5 text-sm text-zinc-400 disabled:cursor-not-allowed"
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="rounded-lg border border-zinc-300 px-3 py-1.5 text-sm text-zinc-700 hover:bg-zinc-50 disabled:cursor-not-allowed disabled:text-zinc-400 disabled:hover:bg-white"
               >
                 Previous
               </button>
-              <button className="rounded-lg bg-gradient-to-r from-lochinara-500 to-lochinara-600 px-3 py-1.5 text-sm font-medium text-white">
-                1
-              </button>
-              <button className="rounded-lg border border-zinc-300 px-3 py-1.5 text-sm text-zinc-700 hover:bg-zinc-50">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                // Show first page, last page, current page, and pages around current
+                if (
+                  page === 1 ||
+                  page === totalPages ||
+                  (page >= currentPage - 1 && page <= currentPage + 1)
+                ) {
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => goToPage(page)}
+                      className={`rounded-lg px-3 py-1.5 text-sm font-medium transition-all ${
+                        currentPage === page
+                          ? "bg-gradient-to-r from-lochinara-500 to-lochinara-600 text-white"
+                          : "border border-zinc-300 text-zinc-700 hover:bg-zinc-50"
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  );
+                } else if (
+                  page === currentPage - 2 ||
+                  page === currentPage + 2
+                ) {
+                  return (
+                    <span key={page} className="px-2 text-zinc-400">
+                      ...
+                    </span>
+                  );
+                }
+                return null;
+              })}
+              <button
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="rounded-lg border border-zinc-300 px-3 py-1.5 text-sm text-zinc-700 hover:bg-zinc-50 disabled:cursor-not-allowed disabled:text-zinc-400 disabled:hover:bg-white"
+              >
                 Next
               </button>
             </div>
