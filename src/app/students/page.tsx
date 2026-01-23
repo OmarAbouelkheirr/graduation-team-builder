@@ -56,14 +56,15 @@ export default function StudentsPage() {
   }, []);
 
   // Set items per page based on screen size
+  // Using multiples of 3 to avoid gaps in the 3-column grid
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth < 640) {
-        // Mobile: 10 items
-        setItemsPerPage(10);
+        // Mobile: 9 items (multiple of 1 for 1-column, multiple of 3 for 2-column grid)
+        setItemsPerPage(9);
       } else {
-        // Desktop: 20 items
-        setItemsPerPage(20);
+        // Desktop: 21 items (multiple of 3 for 3-column grid to avoid gaps)
+        setItemsPerPage(21);
       }
       // Reset to page 1 when screen size changes
       setCurrentPage(1);
