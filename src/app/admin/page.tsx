@@ -1571,7 +1571,7 @@ function EditStudentForm({
           Bio
         </label>
         <textarea
-          className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20 resize-y"
+          className="bio-text w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20 resize-y"
           rows={4}
           value={form.bio}
           onChange={(e) => setForm((f) => ({ ...f, bio: e.target.value }))}

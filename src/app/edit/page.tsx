@@ -474,7 +474,7 @@ export default function EditPage() {
               </label>
               <textarea
                 placeholder="Tell potential teammates about your project interests, past projects, or what role you'd like to take..."
-                className="min-h-[120px] w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
+                className="bio-text min-h-[120px] w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm shadow-sm outline-none transition-all focus:border-lochinara-500 focus:ring-2 focus:ring-lochinara-500/20"
                 value={form.bio}
                 onChange={(e) =>
                   setForm((f) => ({ ...f, bio: e.target.value }))

@@ -307,7 +307,7 @@ export default function StudentsPage() {
                   </div>
                 </div>
 
-                <p className="mb-3 line-clamp-3 text-sm text-zinc-700">{s.bio}</p>
+                <p className="bio-text mb-3 line-clamp-3 text-sm text-zinc-700">{s.bio}</p>
 
                 <div className="mb-4 max-h-20 overflow-y-auto overflow-x-hidden">
                   <div className="flex flex-wrap gap-1.5">
@@ -474,7 +474,7 @@ export default function StudentsPage() {
               {/* Bio - Full Text */}
               <div>
                 <h4 className="text-sm font-semibold text-zinc-700 mb-2 uppercase tracking-wide">About</h4>
-                <p className="text-zinc-700 leading-relaxed whitespace-pre-wrap">{selectedStudent.bio}</p>
+                <p className="bio-text text-zinc-700 leading-relaxed whitespace-pre-wrap">{selectedStudent.bio}</p>
               </div>
 
               {/* Skills */}

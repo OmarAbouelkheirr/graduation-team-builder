@@ -119,3 +119,14 @@ body {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
 }
+
+/* Arabic text support for bio */
+.bio-text {
+  direction: auto;
+  text-align: start;
+  unicode-bidi: plaintext;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Arabic", "Arial", "Helvetica Neue", sans-serif;
+  line-height: 1.7;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
