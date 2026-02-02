@@ -4,16 +4,25 @@ A modern Next.js platform for matching graduation project students and forming t
 
 ## 📸 Screenshots
 
-<!-- Add your screenshots here -->
-<!-- Example: -->
-<!-- ![Home Page](./screenshots/home.png) -->
-<!-- ![Students Directory](./screenshots/students.png) -->
-<!-- ![Admin Panel](./screenshots/admin.png) -->
+<div align="center">
+  <img src="./screenshots/home.png" alt="Home Page" width="800"/>
+  <p><strong>Home Page - Student Registration</strong></p>
+</div>
 
-**To add screenshots:**
-1. Create a `screenshots` folder in the root directory
-2. Add your images (PNG/JPG format recommended)
-3. Update the paths above with your actual image filenames
+<div align="center">
+  <img src="./screenshots/students.png" alt="Students Directory" width="800"/>
+  <p><strong>Students Directory - Browse and Search</strong></p>
+</div>
+
+<div align="center">
+  <img src="./screenshots/edit-profile.png" alt="Edit Profile" width="800"/>
+  <p><strong>Edit Profile - OTP Verification</strong></p>
+</div>
+
+<div align="center">
+  <img src="./screenshots/admin.png" alt="Admin Panel" width="800"/>
+  <p><strong>Admin Panel - Manage Applications</strong></p>
+</div>
 
 ## ✨ Features
 
@@ -199,8 +208,8 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Omar Abouelkhier**
 
-- 📱 Telegram: [@YourTelegramUsername](https://t.me/YourTelegramUsername)
-- 💼 LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
+- 📱 Telegram: [@Dev3mora](https://t.me/Dev3mora)
+- 💼 LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/omar-abouelkhier-eg)
 - 🌐 GitHub: [@OmarAbouelkheirr](https://github.com/OmarAbouelkheirr)
 
 ---

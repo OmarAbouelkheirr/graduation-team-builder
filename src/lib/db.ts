@@ -16,18 +16,11 @@ export async function getDb(): Promise<Db> {
   if (db) return db;
 
   if (!client) {
-    if (!uri) {
-      throw new Error(
-        "MONGODB_URI is not defined in environment variables (.env.local)."
-      );
-    }
     client = new MongoClient(uri);
   }
 
-  try {
+  if (!client.topology?.isConnected()) {
     await client.connect();
-  } catch {
-    // Already connected or connection in progress
   }
 
   db = client.db(dbName);
