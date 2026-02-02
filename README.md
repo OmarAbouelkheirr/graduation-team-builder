@@ -1,24 +1,48 @@
 # UniConnect - Graduation Project Team Matching Platform
 
-A Next.js platform for matching graduation project students and forming teams based on track, skills, and experience.
+A modern Next.js platform for matching graduation project students and forming teams based on track, skills, and experience.
 
-## Features
+## 📸 Screenshots
 
-- Student application form with dynamic skill suggestions
-- Public student directory with search and filtering
-- Admin panel for managing applications
-- OTP-based email verification for student profile editing
-- Maintenance mode and site settings
+<!-- Add your screenshots here -->
+<!-- Example: -->
+<!-- ![Home Page](./screenshots/home.png) -->
+<!-- ![Students Directory](./screenshots/students.png) -->
+<!-- ![Admin Panel](./screenshots/admin.png) -->
 
-## Getting Started
+**To add screenshots:**
+1. Create a `screenshots` folder in the root directory
+2. Add your images (PNG/JPG format recommended)
+3. Update the paths above with your actual image filenames
 
-### Prerequisites
+## ✨ Features
 
-- Node.js 18+ 
+- 🎓 **Student Registration**: Comprehensive application form with dynamic skill suggestions based on selected track
+- 🔍 **Smart Search & Filtering**: Find students by name, skills, or track
+- 📱 **Responsive Design**: Optimized for mobile (9 items/page) and desktop (21 items/page)
+- 🔐 **Secure Profile Editing**: OTP-based email verification for student profile updates
+- 👨‍💼 **Admin Panel**: Full management system for approving/rejecting applications
+- 🎨 **Modern UI**: Beautiful, accessible interface with Tailwind CSS
+- 🌐 **Arabic Text Support**: Proper RTL support for Arabic content in bio fields
+- 📊 **Pagination**: Efficient pagination system to handle large student lists
+- 🔗 **Social Links**: Direct links to LinkedIn, GitHub, Portfolio, and Telegram
+
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 16.1.4
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS 4
+- **Database**: MongoDB
+- **Email Service**: SendGrid / Resend
+- **UI Components**: Custom components with React 19
+
+## 📋 Prerequisites
+
+- Node.js 18+
 - MongoDB Atlas account
-- Resend account (for email OTP)
+- SendGrid or Resend account (for email OTP)
 
-### Environment Variables
+## ⚙️ Environment Variables
 
 Create a `.env.local` file in the root directory:
 
@@ -26,23 +50,23 @@ Create a `.env.local` file in the root directory:
 MONGODB_URI=your_mongodb_atlas_connection_string
 MONGODB_DB=graduation_teams
 ADMIN_SECRET_KEY=your_secure_admin_secret_key
-RESEND_API_KEY=re_your_resend_api_key
-RESEND_FROM_EMAIL=noreply@yourdomain.com
+SENDGRID_API_KEY=SG.your_sendgrid_api_key
+SENDGRID_FROM_EMAIL=any-email@example.com
+# OR use Resend:
+# RESEND_API_KEY=re_your_resend_api_key
+# RESEND_FROM_EMAIL=noreply@yourdomain.com
 SITE_NAME=UniConnect
 ```
 
-### SendGrid Setup (Email Service)
+## 📧 Email Service Setup
 
-**الفرق بين Resend و SendGrid:**
+### SendGrid (Recommended for Testing)
 
-| الميزة | Resend | SendGrid |
-|--------|--------|----------|
-| **Free Tier** | 3,000 email/شهر | 100 email/يوم (3,000/شهر) |
-| **Domain Verification** | ✅ لازم للإنتاج | ❌ مش لازم للاختبار |
-| **Sender Email** | محتاج domain verified | ممكن تستخدم أي إيميل (مش محتاج verify) |
-| **Testing Mode** | بس يرسل لإيميلك المسجل | يرسل لأي إيميل مباشرة ✅ |
-
-**الخلاصة**: SendGrid أفضل للاختبار لأنك ممكن ترسل لأي إيميل مباشرة بدون domain verification!
+**Why SendGrid?**
+- ✅ No domain verification needed for testing
+- ✅ Can send to any email address
+- ✅ 100 emails/day free tier
+- ✅ Perfect for development and testing
 
 **Setup Steps:**
 
@@ -57,50 +81,128 @@ SITE_NAME=UniConnect
    SENDGRID_API_KEY=SG.your_actual_api_key_here
    SENDGRID_FROM_EMAIL=any-email@example.com
    ```
-   
-   **Note**: يمكنك استخدام أي إيميل في `SENDGRID_FROM_EMAIL` - مش محتاج verify! (لكن ممكن يروح للـspam folder)
 
-**Free Tier**: 100 emails/day (3,000/month) - **No domain verification needed!**
+**Free Tier**: 100 emails/day (3,000/month) - No domain verification needed!
 
-**Troubleshooting**:
-- If emails aren't sending, check the server console for error messages
-- Make sure `SENDGRID_API_KEY` is in `.env.local` (not `.env`)
-- Restart the dev server after adding environment variables
-- Check SendGrid dashboard → **Activity** for email delivery status
-- Make sure the API key has "Mail Send" permissions
-- If emails go to spam, verify the sender email in SendGrid dashboard (optional)
+### Resend (Alternative)
 
-### Installation
+Resend requires domain verification for production use but offers similar free tier.
 
-First, run the development server:
+## 🛠️ Installation
 
+1. Clone the repository:
+```bash
+git clone https://github.com/OmarAbouelkheirr/graduation-team-builder.git
+cd graduation-team-builder
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Set up environment variables (see above)
+
+4. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── src/
+│   ├── app/
+│   │   ├── _components/     # Reusable components
+│   │   ├── admin/          # Admin panel pages
+│   │   ├── api/             # API routes
+│   │   ├── edit/            # Student profile editing
+│   │   ├── students/        # Public student directory
+│   │   └── page.tsx         # Home/registration page
+│   └── lib/                 # Utility functions
+├── public/                  # Static assets
+└── screenshots/            # Screenshots (create this folder)
+```
 
-## Learn More
+## 🎯 Key Features Explained
 
-To learn more about Next.js, take a look at the following resources:
+### Student Registration
+- Dynamic skill suggestions based on selected track
+- Avatar selection from predefined options
+- Bio field with Arabic text support
+- Automatic Telegram username extraction from links
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Search & Filter
+- Real-time search by name, skills, or keywords
+- Filter by academic track
+- Debounced search for better performance
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Pagination
+- Mobile: 9 items per page (optimized for 2-column grid)
+- Desktop: 21 items per page (optimized for 3-column grid)
+- Smart pagination controls with page numbers
 
-## Deploy on Vercel
+### Admin Features
+- Approve/reject student applications
+- Edit student profiles
+- Manage site settings
+- Featured and special student badges
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🐛 Troubleshooting
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Email Issues
+- Check server console for error messages
+- Verify `SENDGRID_API_KEY` is in `.env.local`
+- Restart dev server after adding environment variables
+- Check SendGrid dashboard → **Activity** for delivery status
+- Ensure API key has "Mail Send" permissions
+
+### Database Issues
+- Verify MongoDB connection string is correct
+- Check MongoDB Atlas IP whitelist settings
+- Ensure database name matches `.env.local`
+
+## 📚 Learn More
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [MongoDB Atlas Documentation](https://docs.atlas.mongodb.com)
+
+## 🚢 Deployment
+
+### Deploy on Vercel
+
+The easiest way to deploy your Next.js app:
+
+1. Push your code to GitHub
+2. Import your repository on [Vercel](https://vercel.com/new)
+3. Add your environment variables
+4. Deploy!
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/OmarAbouelkheirr/graduation-team-builder)
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👨‍💻 Developer
+
+**Omar Abouelkhier**
+
+- 📱 Telegram: [@YourTelegramUsername](https://t.me/YourTelegramUsername)
+- 💼 LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
+- 🌐 GitHub: [@OmarAbouelkheirr](https://github.com/OmarAbouelkheirr)
+
+---
+
+Made with ❤️ by Omar Abouelkhier
