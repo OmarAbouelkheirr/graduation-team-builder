@@ -17,9 +17,6 @@ export async function getDb(): Promise<Db> {
 
   if (!client) {
     client = new MongoClient(uri as string);
-  }
-
-  if (!client.topology?.isConnected()) {
     await client.connect();
   }
 
